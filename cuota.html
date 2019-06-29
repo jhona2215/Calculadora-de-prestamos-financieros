@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Phoenix Bank</title>
+	<link rel="icon" type= "imagen/png" href="minlogo.png" />
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <style type="text/css">
+		.slider{
+		background: url(fondo.jfif);
+		height: 100vh;
+		background-size: cover;
+		background-position: center;
+		}
+		hr, .hrcolor {
+		height: 1px;
+		border: 0;
+		background-color: gray;
+		}
+    </style>
+</head>
+<body>
+	<nav class="navbar sticky-top navbar-dark bg-dark navbar-expand-md">
+      <!-- Logo y nombre empresa -->
+      <a class="navbar-brand" href="index.html">
+      <img src="minlogo.png" width="30" height="30" class="d-inline-block align-top">
+        Phoenix Bank
+      </a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+      	<hr>
+	      <div class="navbar-nav mr-auto ml-auto text-center">  
+	        <a class="nav-item nav-link text-center" href="#" id="CF">Cuota Fija</a>
+	        <a class="nav-item nav-link text-center" href="#" id="PG">Periodo de Gracia Propiamente Dicho</a>
+	      </div>
+	      <hr>
+      </div> 
+    </nav>
+    <div class="jumbotron rounded-0">
+    	<div id="content conteiner">
+	    	<h1 class="display-4" id="cuota">Cuota Fija</h1>
+			<hr class = "my-4">
+			<form>
+				<form>
+				  <div class="row">
+				    <div class="col">
+				      <label>Nombre</label>
+				      <input type="text" class="form-control" placeholder="Nombre" id="nombre">
+				    </div>
+				    <div class="col">
+				      <label>Cedula</label>
+				      <input type="text" class="form-control" placeholder="Cedula" id="cedula">
+				    </div>
+				  </div>
+				  <div class="row">
+				    <div class="col">
+				      <label>Monto del prestamo (COP)</label>
+				      <input type="text" class="form-control" placeholder="$" id="monto">
+				      <small class="form-text text-muted">Si el monto tiene decimales utilice la ","</small>
+				    </div>
+				  </div>
+				  <br>
+				  <div class="row">
+				    <div class="col">
+				      <label>Plazo</label>
+				      <select class="btn btn-light dropdown-toggle" id="plazo">
+				      	<option>36 Meses</option>
+				      	<option>48 Meses</option>
+				      	<option>60 Meses</option>
+				      	<option>72 Meses</option>
+				      	<option>84 Meses</option>
+				      </select>
+				    </div>
+				    <div class="col">
+				    	<label>Periodo de amortización</label>
+					    <select class="btn btn-light dropdown-toggle" id="peri">
+					      	<option>Mensual</option>
+					      	<option>Bimestral</option>
+					     </select>
+				    </div>
+				    <div class="col" style="display:none" id="gra">
+				    	<label>Periodo de Gracia</label>
+					    <select class="btn btn-light dropdown-toggle" id="perGra">
+					      	<option>24 Meses</option>
+					      	<option>36 Meses</option>
+					    </select>
+				    </div>
+				  </div>
+				  <br>
+				  <hr>
+				  <div class="row">
+				    <div class="col">
+				      <label>Tasas de interes</label>
+				      <small class="form-text text-muted">Si la tasa de interes tiene decimales utilice el "."</small>
+				      <div id="alert"></div>
+				    </div>
+				    <div class="col">
+				    	<div class="row">
+				    		<div class="col">
+				    			<label>Efectiva Anual (EA)</label>
+				    		</div>
+				    		<div class="col">
+				    			<input type="text" class="form-control" placeholder="EA" id="ea">
+				    		</div>
+				    	</div>
+				    	<div class="row">
+				    		<div class="col">
+				    			<label>Nominal Anual</label>
+				    		</div>
+				    		<div class="col">
+				    			<input type="text" class="form-control" placeholder="Nominal" id="na">
+				    		</div>
+				    	</div>
+				    	<div class="row">
+				    		<div class="col">
+				    			<label>Periodico (ip)</label>
+				    		</div>
+				    		<div class="col">
+				    			<input type="text" class="form-control" placeholder="ip" id="ip">
+				    		</div>
+				    	</div>
+
+				    </div>
+				  </div>
+				</form>
+			</form>
+			<hr>
+			<div class="d-flex justify-content-center">
+				<button class="btn btn-outline-secondary btn-block" id="cal">Calcular</button>
+			</div>
+			<br>
+			<h1 class ="display-5" id="vs" style="display:none">Vista Previa</h1>
+			<div class ="content container text-center" id="cuadro" style="display:none">
+			   <div class="alert alert-success table-responsive">
+					<table class="table" id="tabla">
+						<thead id="head">
+						    <tr>
+						      <th scope="col">#</th>
+						      <th scope="col">Fecha<br>(dd/mm/yyyy)</th>
+						      <th scope="col">Saldo a Capital</th>
+						      <th scope="col">Amortización a capital</th>
+						      <th scope="col">Amortización a Intereses</th>
+						      <th scope="col">Cuota Fija</th>
+						      <th scope="col">Flujo de caja</th>
+						    </tr>
+						</thead>
+						<tbody id="cuo">
+
+						</tbody>
+					</table>
+					<div class="d-flex justify-content-center">
+						<button class="btn btn-outline-secondary btn-block" id="pdf">Generar PDF</button>
+					</div>
+				</div>
+			</div>
+    	</div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/economia.js"></script>
+    <script type="text/javascript" src="js/pdf.js"></script>
+    <script type="text/javascript" src="jspdf/dist/jspdf.min.js"></script>
+    <script src="jspdf/libs/jspdf.plugin.autotable.src.js"></script>
+</body>
+</html>
